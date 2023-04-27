@@ -1,0 +1,3 @@
+{"nome":"Dhiego","email":"dhiego@gmail.com","password":"123"}
+{"nome":"chico","email":"chico@gmail.com","password":"123"}
+{"nome":"jao","email":"jao@gmail.com","password":"123"}

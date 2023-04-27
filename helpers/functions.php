@@ -5,14 +5,11 @@ error_reporting(E_ALL);
 
 function saveDataCadastro($nome, $email, $password){
     $data = getDataTransform($nome, $email, $password);
-    $file = file("../data/cadastro.txt");
-    array_push($file, $data);
     $fp = fopen("../data/cadastro.txt", "a+");
-    foreach($file as $line){
-        fwrite($fp, $line);
-        fwrite($fp, PHP_EOL);
-    }
+    fwrite($fp, $data);
+    fwrite($fp, PHP_EOL);
     fclose($fp);
+    header("Location: http://localhost/aula-form-php/");exit;
 }
 
 function getDataTransform($nome, $email, $password){
@@ -31,13 +28,13 @@ function login($email, $password){
     foreach($handle as $linha){
         $data = json_decode($linha);
         var_dump($data);
-        // if($data->email === $email && $data->password === $password){
-        //     $_SESSION["username"] = $email;
-        //     $_SESSION["nome"] = $data->nome;
-        //     $_SESSION["isLogged"] = true;
-        //     header("Location: http://localhost/aula/");exit;
+        if($data->email === $email && $data->password === $password){
+            $_SESSION["username"] = $email;
+            $_SESSION["nome"] = $data->nome;
+            $_SESSION["isLogged"] = true;
+            header("Location: http://localhost/aula-form-php/");exit;
 
-        // }
+        }
     }
 }
 ?>
